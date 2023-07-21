@@ -1,24 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [items, setItems] = React.useState<string[]>([])
+  const [heehee, setHeehee] = React.useState("")
+  function buttonClick(){
+    console.log(heehee)
+    setItems(items.concat(heehee))
+  }
+
+  function changes(event: React.ChangeEvent<HTMLInputElement>){
+    //console.log(event.target.value)
+    setHeehee(event.target.value)
+  }
+
+  // const element = [<div>hello</div>, <div>hi</div>, <div>bye</div>];
+  const box=[]
+  for (let haha of items) {
+    const desk = <div>{haha}</div>
+    box.push(desk)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="Left">
+        <input type="text" id="heehee" onChange={changes}>
+
+        </input>
+
+        <button onClick={buttonClick}>
+          +
+        </button>
+      </div>
+
+      <div className="Right">
+        {box}
+      </div>
     </div>
   );
 }
